@@ -176,6 +176,9 @@ PARAM_CFG_ARRAY& SCH_EDIT_FRAME::GetProjectFileParameters()
     m_projectFileParams.push_back( new PARAM_CFG_BOOL( wxT( "ERC_CheckBusToNetConflicts" ),
                                    &m_ercSettings.check_bus_to_net_conflicts, true ) );
 
+    m_projectFileParams.push_back(
+            new PARAM_CFG_BOOL( wxT( "ERC_CheckTODO" ), &m_ercSettings.check_todo, true ) );
+
     return m_projectFileParams;
 }
 

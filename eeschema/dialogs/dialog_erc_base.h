@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Feb 17 2019)
+// C++ code generated with wxFormBuilder (version Jul 26 2019)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -63,6 +63,7 @@ class DIALOG_ERC_BASE : public DIALOG_SHIM
 		wxPanel* m_PanelERCOptions;
 		wxCheckBox* m_cbTestSimilarLabels;
 		wxCheckBox* m_cbTestUniqueGlbLabels;
+		wxCheckBox* m_cbTestTodos;
 		wxPanel* m_matrixPanel;
 		wxButton* m_ResetOptButton;
 		wxCheckBox* m_cbCheckBusToNetConflicts;
@@ -86,7 +87,7 @@ class DIALOG_ERC_BASE : public DIALOG_SHIM
 
 	public:
 
-		DIALOG_ERC_BASE( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Electrical Rules Checker"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 483,420 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
+		DIALOG_ERC_BASE( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Electrical Rules Checker"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 483,597 ), long style = wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER );
 		~DIALOG_ERC_BASE();
 
 };

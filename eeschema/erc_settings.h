@@ -39,6 +39,7 @@ public:
         check_bus_entry_conflicts = true;
         check_bus_to_bus_conflicts = true;
         check_bus_to_net_conflicts = true;
+        check_todo = true;
     }
 
     bool operator==( const ERC_SETTINGS& other ) const
@@ -49,7 +50,8 @@ public:
                  other.check_bus_driver_conflicts == check_bus_driver_conflicts &&
                  other.check_bus_entry_conflicts == check_bus_entry_conflicts &&
                  other.check_bus_to_bus_conflicts == check_bus_to_bus_conflicts &&
-                 other.check_bus_to_net_conflicts == check_bus_to_net_conflicts );
+                 other.check_bus_to_net_conflicts == check_bus_to_net_conflicts &&
+                 other.check_todo == check_todo );
     }
 
     bool operator!=( const ERC_SETTINGS& other ) const
@@ -77,6 +79,9 @@ public:
 
     /// If true, check that bus wires don't graphically connect to net objects (or vice versa)
     bool check_bus_to_net_conflicts;
+
+    /// If true, check that no text items starting with "todo" exist
+    bool check_todo;
 };
 
 #endif

@@ -145,6 +145,7 @@ void DIALOG_ERC::transferSettingsToControls()
     m_cbCheckBusEntries->SetValue( m_settings.check_bus_entry_conflicts );
     m_cbCheckBusToBusConflicts->SetValue( m_settings.check_bus_to_bus_conflicts );
     m_cbCheckBusToNetConflicts->SetValue( m_settings.check_bus_to_net_conflicts );
+    m_cbTestTodos->SetValue( m_settings.check_todo );
 }
 
 
@@ -157,17 +158,18 @@ void DIALOG_ERC::transferControlsToSettings()
     m_settings.check_bus_entry_conflicts = m_cbCheckBusEntries->GetValue();
     m_settings.check_bus_to_bus_conflicts = m_cbCheckBusToBusConflicts->GetValue();
     m_settings.check_bus_to_net_conflicts = m_cbCheckBusToNetConflicts->GetValue();
+    m_settings.check_todo = m_cbTestTodos->GetValue();
 }
 
 
-void DIALOG_ERC::updateMarkerCounts( SCH_SCREENS *screens )
+void DIALOG_ERC::updateMarkerCounts( SCH_SCREENS* screens )
 {
-    int markers = screens->GetMarkerCount( MARKER_BASE::MARKER_ERC,
-                                           MARKER_BASE::MARKER_SEVERITY_UNSPEC );
-    int warnings = screens->GetMarkerCount( MARKER_BASE::MARKER_ERC,
-                                            MARKER_BASE::MARKER_SEVERITY_WARNING );
-    int errors = screens->GetMarkerCount( MARKER_BASE::MARKER_ERC,
-                                          MARKER_BASE::MARKER_SEVERITY_ERROR );
+    int markers =
+            screens->GetMarkerCount( MARKER_BASE::MARKER_ERC, MARKER_BASE::MARKER_SEVERITY_UNSPEC );
+    int warnings = screens->GetMarkerCount(
+            MARKER_BASE::MARKER_ERC, MARKER_BASE::MARKER_SEVERITY_WARNING );
+    int errors =
+            screens->GetMarkerCount( MARKER_BASE::MARKER_ERC, MARKER_BASE::MARKER_SEVERITY_ERROR );
 
     wxString num;
     num.Printf( wxT( "%d" ), markers );
@@ -514,6 +516,11 @@ void DIALOG_ERC::TestErc( REPORTER& aReporter )
     TestDuplicateSheetNames( true );
 
     TestConflictingBusAliases();
+
+    if( m_settings.check_todo )
+    {
+        TestTodos( true );
+    }
 
     // The connection graph has a whole set of ERC checks it can run
     m_parent->RecalculateConnections();

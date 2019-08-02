@@ -224,6 +224,45 @@ int TestDuplicateSheetNames( bool aCreateMarker )
     return err_count;
 }
 
+int TestTodos( bool aCreateMarker )
+{
+    SCH_SCREEN* screen;
+    SCH_ITEM*   item;
+    int         err_count = 0;
+    SCH_SCREENS screenList; // Created the list of screen
+
+    for( screen = screenList.GetFirst(); screen != NULL; screen = screenList.GetNext() )
+    {
+        for( item = screen->GetDrawItems(); item != NULL; item = item->Next() )
+        {
+            // search for a text;
+            if( item->Type() != SCH_TEXT_T )
+            {
+                continue;
+            }
+
+            auto textItem = (SCH_TEXT*) item;
+
+            if( textItem->GetText().Find( "TODO" ) != wxNOT_FOUND )
+            {
+                if( aCreateMarker )
+                {
+                    /* Create a new marker type ERC error*/
+                    auto* marker = new SCH_MARKER();
+                    marker->SetTimeStamp( GetNewTimeStamp() );
+                    marker->SetData( ERCE_TODO, textItem->GetPosition(), _( "TODO found" ),
+                            textItem->GetPosition() );
+                    marker->SetMarkerType( MARKER_BASE::MARKER_ERC );
+                    marker->SetErrorLevel( MARKER_BASE::MARKER_SEVERITY_WARNING );
+                    screen->Append( marker );
+                }
+
+                err_count++;
+            }
+        }
+    }
+    return err_count;
+}
 
 int TestConflictingBusAliases( bool aCreateMarker )
 {

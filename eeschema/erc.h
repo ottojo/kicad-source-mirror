@@ -72,6 +72,7 @@ enum ERCE_T
     ERCE_BUS_TO_BUS_CONFLICT,   // a connection between bus objects doesn't share at least one net
     ERCE_BUS_TO_NET_CONFLICT,   // a bus wire is graphically connected to a net port/pin (or vice versa)
     ERCE_GLOBLABEL,             // a global label is unique
+    ERCE_TODO,                // a text starting with "todo" exists
 };
 
 /* Minimal connection table */
@@ -120,6 +121,15 @@ void TestOthersItems( NETLIST_OBJECT_LIST* aList,
  *                       false = calculate error count only
  */
 int TestDuplicateSheetNames( bool aCreateMarker );
+
+/**
+ * Checks the schematic for text items containing "TODO" and creates warnings
+ * for them.
+ * @param aCreateMarker: true = create error markers in schematic,
+ *                       false = calculate error count only
+ * @return the error count
+ */
+int TestTodos( bool aCreateMarker );
 
 /**
  * Checks that there are not conflicting bus alias definitions in the schematic

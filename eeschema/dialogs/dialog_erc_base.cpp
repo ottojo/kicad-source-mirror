@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////
-// C++ code generated with wxFormBuilder (version Feb 17 2019)
+// C++ code generated with wxFormBuilder (version Jul 26 2019)
 // http://www.wxformbuilder.org/
 //
 // PLEASE DO *NOT* EDIT THIS FILE!
@@ -118,6 +118,17 @@ DIALOG_ERC_BASE::DIALOG_ERC_BASE( wxWindow* parent, wxWindowID id, const wxStrin
 
 
 	m_panelMatrixSizer->Add( sbSizer2, 0, wxALL|wxEXPAND, 5 );
+
+	wxStaticBoxSizer* sbSizer4;
+	sbSizer4 = new wxStaticBoxSizer( new wxStaticBox( m_PanelERCOptions, wxID_ANY, _("Other Checks") ), wxVERTICAL );
+
+	m_cbTestTodos = new wxCheckBox( sbSizer4->GetStaticBox(), wxID_ANY, _("Test TODOs"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_cbTestTodos->SetToolTip( _("Display a warning when a text containing \"TODO\" is present") );
+
+	sbSizer4->Add( m_cbTestTodos, 0, wxALL, 5 );
+
+
+	m_panelMatrixSizer->Add( sbSizer4, 0, wxEXPAND, 5 );
 
 	wxStaticBoxSizer* sbSizer3;
 	sbSizer3 = new wxStaticBoxSizer( new wxStaticBox( m_PanelERCOptions, wxID_ANY, _("Pin to Pin Connections") ), wxVERTICAL );
